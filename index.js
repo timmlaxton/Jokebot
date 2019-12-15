@@ -38,7 +38,8 @@ bot.on('message', (data) => {
 function handleMessage(message){
   if(message.includes(' chucknorris')) {
     chuckJoke();
-
+  } else if(message.inlcudes(' yomama')) {
+    yoMamaJoke();
   }
 }
 
@@ -47,10 +48,10 @@ function handleMessage(message){
 function chuckJoke() {
   axios.get('http://api.icndb.com/jokes/random')
   .then(res => {
-    const joke = res.data.value.joke;
+    const joke = res.data.joke;
 
     const params = {
-      icon_emoji: ':laughing:'
+      icon_emoji: ':laugh:'
     };
 
     bot.postMessageToChannel('general',`Chuck Norris: ${joke}`, params);
@@ -61,7 +62,7 @@ function chuckJoke() {
   function yoMamaJoke() {
     axios.get('http://api.yomamma.info')
     .then(res => {
-      const joke = res.data.joke;
+      const joke = res.data.value.joke;
 
       const params = {
         icon_emoji: ':laughing:'
